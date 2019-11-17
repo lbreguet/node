@@ -5,27 +5,25 @@ let app = express();
 
 app.use(morgan('combined'));
 
-app.use('/about', (req, res, next) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/html');
-  res.end('<html><body><p>About</p></body></html>');
-});
+app.use(express.json())
 
-app.use('/home', (req, res, next) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/html');
-  res.end('<html><body><p>Homepage</p></body></html>');
-});
-
-app.use('/welcome', (req, res, next) => {
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'application/json');
+app.get('/welcome/:msgId', (req, res, next) => { 
+    res.statusCode = 200; 
+    res.setHeader('Content-Type', 'application/json'); 
     let msg = {
-        message: "Hello"
+        "1": "Hello",
+        "2": "Bye",
+        "3": "Sky"
     }
-    res.json(msg);
+    res.json({ message: msg[ req.params.msgId ] || "Unknown"});
+    res.end(); 
+});
+
+app.post('/welcome', (req, res, next) => { 
+    res.statusCode = 200; 
+    res.setHeader('Content-Type', 'application/json'); 
+    res.json({ id: 3, message: req.body.message + " was successfully added" }); 
     res.end();
 });
 
-//app.listen(8080, '0.0.0.0');
-module.exports = app
+module.exports = app;
