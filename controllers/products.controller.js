@@ -4,23 +4,20 @@ const ObjectId = require('mongoose').Types.ObjectId;
 
 module.exports.getAll = async function(req, res) {
     try {
-      let user = await User.findById(req.params.userId)
-      let products = await Product.find({user: new ObjectId(req.params.userId)})
+      let products = await Product.find({user: new ObjectId(req.userId)})
       res.json({data: products})
     } catch (error) {
-        console.log(error)
-        res.json({error: error})
+      res.json({error: error})
     }
 }
 
 module.exports.getOne = async function(req, res) {
-        try {
-  let product = await Product.findById(req.params.productId)
-  res.json({data: product})
-      } catch (error) {
-        console.log(error)
-        res.end({error: error})
-    }
+  try {
+    let product = await Product.findOne({user: new ObjectId(req.userId), _id: new ObjectId(req.params.productId)})
+    res.json({data: product})
+  } catch (error) {
+    res.end({error: error})
+  }
 }
 
 module.exports.create = async function(req, res) {

@@ -5,7 +5,6 @@ var logger = require('morgan');
 var cors = require('cors')
 
 const config = require('./config')
-try {
 config.init()
 
 var indexRouter = require('./routes/index');
@@ -24,10 +23,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/', productsRouter);
-
-    } catch (error) {
-        console.log(error)
-    }
+app.use('/api/:userId/products',
+  // a workaround express inability to use params in parent route
+  function(req, res, next) {
+    req.userId = req.params.userId;
+    next()
+  },productsRouter);
 
 module.exports = app;
