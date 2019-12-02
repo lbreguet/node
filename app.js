@@ -24,10 +24,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/api/products', productsRouter);
+app.use('/', productsRouter);
 
     } catch (error) {
         console.log(error)
     }
-    
+
 module.exports = app;
