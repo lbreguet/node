@@ -1,1 +1,1 @@
-exports.db = 'https://hidden-woodland-78227.herokuapp.com' 
+exports.db = 'mongodb+srv://abc123:DCCzHOpaczPH4Xwo@vue-express-wbnpi.mongodb.net/test?retryWrites=true&w=majority' 

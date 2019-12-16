@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\config",
+    "\\controllers",
+    "\\models",
+    "\\public",
+    "\\routes",
+    "\\test"
+  ],
+  "SelectedNode": "\\test\\movies.test.js",
+  "PreviewInSolutionExplorer": false
+}
