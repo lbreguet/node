@@ -25,8 +25,4 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api/movies', moviesRouter);
 
-app.listen(port, () => {
-    console.log(`Server running on port ${port}`)
-})
-
 module.exports = app;
